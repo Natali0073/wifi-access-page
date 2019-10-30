@@ -2,8 +2,8 @@
   <div class="container">
     <h1>{{pageInfo.title}}</h1>
     <div v-html="$md.render(pageInfo.body)"/>
-    <button class="login-button" @click="fetchSomething">{{pageInfo.buttonTitle}}</button>
-    <button class="login-button" @click="fetchSomething">Connect to m3portal</button>
+    <button class="login-button" @click="fetchLogin">{{pageInfo.buttonTitle}}</button>
+    <button class="login-button" @click="fetchM2connect">Connect to m3portal</button>
     <div>{{m3connectRequest}}</div>
   </div>
 </template>
@@ -29,7 +29,22 @@
         };
     },
     methods: {
-      async fetchSomething() {
+      async fetchLogin() {
+        const data = {
+          username: 'sombra',
+          password: 'sombrainc',
+        };
+        await this.$axios.$post('https://192.168.252.61:8443/manage/site/default/settings/guestcontrol', data)
+          .then((response) => {
+            this.m3connectRequest = response;
+            console.log('response', response);
+          })
+          .catch((error) => {
+            this.m3connectRequest = error;
+            console.log('error', error);
+          })
+      },
+      async fetchM2connect() {
         this.$axios.setHeader('Authorization', '9ffab846-f931-471b-b43c-e0e03459f0b1');
         await this.$axios.$post('https://portal.m3connect.de/api/v1/create-session')
           .then((response) => {
