@@ -36,9 +36,11 @@
         };
         await this.$axios.$post('https://192.168.252.61:8443/manage/site/default/settings/guestcontrol', data)
           .then((response) => {
+            this.m3connectRequest = response;
             console.log('response', response);
           })
           .catch((error) => {
+            this.m3connectRequest = error;
             console.log('error', error);
           })
       },
