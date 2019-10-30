@@ -21,12 +21,16 @@ module.exports = {
   modules: [
     '@nuxtjs/markdownit',
     '@nuxtjs/axios',
+    '@nuxt/http',
   ],
 
   markdownit: {
     injected: true,
   },
 
+  axios: {
+    // proxyHeaders: false
+  },
   /*
   ** Build configuration
   */

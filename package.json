@@ -13,6 +13,7 @@
     "precommit": "npm run lint"
   },
   "dependencies": {
+    "@nuxt/http": "^0.3.5",
     "@nuxtjs/axios": "^5.8.0",
     "@nuxtjs/markdownit": "^1.2.7",
     "nuxt": "^2.0.0"

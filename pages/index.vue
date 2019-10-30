@@ -2,8 +2,9 @@
   <div class="container">
     <h1>{{pageInfo.title}}</h1>
     <div v-html="$md.render(pageInfo.body)"/>
-    <button class="login-button">{{pageInfo.buttonTitle}}</button>
-    {{users}}
+    <button class="login-button" @click="fetchSomething">{{pageInfo.buttonTitle}}</button>
+    <button class="login-button" @click="fetchSomething">Connect to m3portal</button>
+    <div>{{m3connectRequest}}</div>
   </div>
 </template>
 
@@ -15,6 +16,11 @@
         script: [{src: 'https://identity.netlify.com/v1/netlify-identity-widget.js'}],
       };
     },
+    data() {
+      return {
+        m3connectRequest: null,
+      }
+    },
     async asyncData({params, payload}) {
       if (payload) return {pageInfo: payload};
       else
@@ -22,14 +28,20 @@
           pageInfo: await require(`~/assets/content/blog/2019-10-30-wi-fi-accesses.json`),
         };
     },
-    async fetch({store}) {
-      await store.dispatch('fetch');
-    },
-    computed: {
-      users() {
-        return this.$store.getters['xusers']
+    methods: {
+      async fetchSomething() {
+        this.$axios.setHeader('Authorization', '9ffab846-f931-471b-b43c-e0e03459f0b1');
+        await this.$axios.$post('https://portal.m3connect.de/api/v1/create-session')
+          .then((response) => {
+            this.m3connectRequest = response;
+            console.log('response', response);
+          })
+          .catch((error) => {
+            this.m3connectRequest = error;
+            console.log('error', error);
+          })
       }
-    },
+    }
   }
 </script>
 
