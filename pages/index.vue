@@ -1,27 +1,36 @@
 <template>
   <div class="container">
     <h1>{{pageInfo.title}}</h1>
-    <div v-html="$md.render(pageInfo.body)" />
+    <div v-html="$md.render(pageInfo.body)"/>
     <button class="login-button">{{pageInfo.buttonTitle}}</button>
+    {{users}}
   </div>
 </template>
 
 <script>
 
-export default {
-  head() {
-    return {
-      script: [{ src: 'https://identity.netlify.com/v1/netlify-identity-widget.js' }],
-    };
-  },
-  async asyncData({ params, payload }) {
-    if (payload) return { blogPost: payload };
-    else
+  export default {
+    head() {
       return {
-        pageInfo: await require(`~/assets/content/blog/2019-10-30-wi-fi-accesses.json`),
+        script: [{src: 'https://identity.netlify.com/v1/netlify-identity-widget.js'}],
       };
-  },
-}
+    },
+    async asyncData({params, payload}) {
+      if (payload) return {pageInfo: payload};
+      else
+        return {
+          pageInfo: await require(`~/assets/content/blog/2019-10-30-wi-fi-accesses.json`),
+        };
+    },
+    async fetch({store}) {
+      await store.dispatch('fetch');
+    },
+    computed: {
+      users() {
+        return this.$store.getters['xusers']
+      }
+    },
+  }
 </script>
 
 <style>

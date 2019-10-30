@@ -18,4 +18,15 @@ export const actions = {
     });
     await commit('setBlogPosts', blogPosts);
   },
+
+  async fetch() {
+    this.$axios.setHeader('Authorization', '9ffab846-f931-471b-b43c-e0e03459f0b1');
+    await this.$axios.$post('https://portal.m3connect.de/api/v1/create-session')
+      .then((response) => {
+        console.log('response', response);
+      })
+      .catch((error) => {
+        console.log('error', error);
+      })
+  }
 };
