@@ -3,7 +3,7 @@
     <h1>{{pageInfo.title}}</h1>
     <div v-html="$md.render(pageInfo.body)"/>
     <button class="login-button" @click="fetchLogin">{{pageInfo.buttonTitle}}</button>
-    <button class="login-button" @click="fetchM2connect">Connect to m3portal</button>
+    <button class="login-button" @click="fetchM3connect">Connect to m3portal</button>
     <div>{{m3connectRequest}}</div>
   </div>
 </template>
@@ -36,23 +36,23 @@
         };
         await this.$axios.$post('https://192.168.252.61:8443/manage/site/default/settings/guestcontrol', data)
           .then((response) => {
-            this.m3connectRequest = response;
+            this.m3connectRequest = 'Login success: ' + response;
             console.log('response', response);
           })
           .catch((error) => {
-            this.m3connectRequest = error;
+            this.m3connectRequest = 'Login error: ' + error;
             console.log('error', error);
           })
       },
-      async fetchM2connect() {
+      async fetchM3connect() {
         this.$axios.setHeader('Authorization', '9ffab846-f931-471b-b43c-e0e03459f0b1');
         await this.$axios.$post('https://portal.m3connect.de/api/v1/create-session')
           .then((response) => {
-            this.m3connectRequest = response;
+            this.m3connectRequest = 'M3connect success: ' + response;
             console.log('response', response);
           })
           .catch((error) => {
-            this.m3connectRequest = error;
+            this.m3connectRequest = 'M3connect error: ' + error;
             console.log('error', error);
           })
       }
