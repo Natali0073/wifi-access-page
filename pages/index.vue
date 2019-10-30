@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h1>{{pageInfo.title}}</h1>
-    <div>{{pageInfo.body}}</div>
+    <div v-html="$md.render(pageInfo.body)" />
     <button class="login-button">{{pageInfo.buttonTitle}}</button>
   </div>
 </template>
