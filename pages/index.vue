@@ -23,6 +23,10 @@ export default {
 
   .login-button {
     width: 200px;
+    height: 50px;
+    background: rgba(0, 0, 0, .2);
+    font-size: 16px;
+    margin-top: 37px;
   }
 </style>
 
