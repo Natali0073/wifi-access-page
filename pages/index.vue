@@ -1,8 +1,8 @@
 <template>
   <div class="container">
-    <h1>WI-FI Accesses</h1>
-    <div>If you want to connect to WI-FI please click "Login" button</div>
-    <button class="login-button">Login</button>
+    <h1>{{pageInfo.title}}</h1>
+    <div>{{pageInfo.body}}</div>
+    <button class="login-button">{{pageInfo.buttonTitle}}</button>
   </div>
 </template>
 
@@ -13,6 +13,13 @@ export default {
     return {
       script: [{ src: 'https://identity.netlify.com/v1/netlify-identity-widget.js' }],
     };
+  },
+  async asyncData({ params, payload }) {
+    if (payload) return { blogPost: payload };
+    else
+      return {
+        pageInfo: await require(`~/assets/content/blog/2019-10-30-wi-fi-accesses.json`),
+      };
   },
 }
 </script>
