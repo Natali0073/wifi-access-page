@@ -15,7 +15,7 @@ collections:
     editor:
       preview: false
     fields:
-      - { label: 'Title', name: 'title', widget: 'string', pattern: ["/^[a-zA-Z\s\-\'.][a-zA-Z\s\-\.]{4,100}$/", "Should contain only letters (a-z) (A-Z), special symbols: - ‘ space and 5-100 characters length"] }
+      - { label: 'Title', name: 'title', widget: 'string', pattern: ["/^[a-zA-Z 0-9\.\,\\- ]{4,100}$/", "Should contain only letters (a-z) (A-Z), special symbols: - ' , . space and 5-100 characters length"] }
       - { label: 'Body', name: 'body', widget: 'markdown', pattern: ['.{10,}', "Must have at least 10 characters"]  }
       - { label: 'Image', name: 'image', widget: 'image', required: false, media_library: { config: {multiple: true } } }
       - { label: 'Button title', name: 'buttonTitle', widget: 'string' }
