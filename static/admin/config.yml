@@ -19,4 +19,3 @@ collections:
       - { label: 'Body', name: 'body', widget: 'markdown', pattern: ['.{10,}', "Must have at least 10 characters"]  }
       - { label: 'Image', name: 'image', widget: 'image', required: false, media_library: { config: {multiple: true } } }
       - { label: 'Button title', name: 'buttonTitle', widget: 'string' }
-.
