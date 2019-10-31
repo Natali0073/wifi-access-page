@@ -31,19 +31,6 @@
     },
     methods: {
       async fetchLogin() {
-        const data = {
-          username: 'sombra',
-          password: 'sombrainc',
-        };
-        await this.$axios.$post('https://192.168.252.61:8443/manage/site/default/settings/guestcontrol', data)
-          .then((response) => {
-            this.m3connectRequest = 'Login success: ' + response;
-            console.log('response', response);
-          })
-          .catch((error) => {
-            this.m3connectRequest = 'Login error: ' + error;
-            console.log('error', error);
-          })
       },
       async fetchM3connect() {
         this.$axios.setHeader('Authorization', '9ffab846-f931-471b-b43c-e0e03459f0b1');
@@ -62,6 +49,11 @@
 </script>
 
 <style>
+  body {
+    background-color: rgba(253, 187, 8, .1);
+    font-family: Arial;
+  }
+
   .container {
     display: flex;
     align-items: center;
