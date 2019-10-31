@@ -1,9 +1,10 @@
 <template>
   <div class="container">
+    <img v-if="pageInfo.image" :src="require(`../static${pageInfo.image}`)" alt="Logo" width="60%">
     <h1>{{pageInfo.title}}</h1>
     <div v-html="$md.render(pageInfo.body)"/>
-    <button class="login-button" @click="fetchLogin">{{pageInfo.buttonTitle}}</button>
-    <button class="login-button" @click="fetchM3connect">Connect to m3portal</button>
+    <button class="button login-button" @click="fetchLogin">{{pageInfo.buttonTitle}}</button>
+    <button class="m3connect-button button" @click="fetchM3connect">Connect to m3portal</button>
     <div>{{m3connectRequest}}</div>
   </div>
 </template>
@@ -25,7 +26,7 @@
       if (payload) return {pageInfo: payload};
       else
         return {
-          pageInfo: await require(`~/assets/content/blog/2019-10-30-wi-fi-accesses.json`),
+          pageInfo: await require(`~/assets/content/blog/wi-fi-access.json`),
         };
     },
     methods: {
@@ -68,13 +69,23 @@
     flex-direction: column;
   }
 
-  .login-button {
+  .button {
     width: 200px;
     height: 50px;
     background: rgba(0, 0, 0, .2);
     font-size: 16px;
     margin-top: 37px;
   }
+
+
+  .login-button {
+    background: #ef7c08;
+  }
+
+  .m3connect-button {
+    background: #fcbb08;
+  }
+
 </style>
 
 
