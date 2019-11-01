@@ -1,11 +1,14 @@
 <template>
   <div class="container">
-    <img v-if="pageInfo.image" :src="require(`../static${pageInfo.image}`)" alt="Logo" width="60%" class="mt-20">
+    <img v-if="pageInfo.image"
+         :src="require(`../static${pageInfo.image}`)"
+         alt="Logo"
+         width="60%"
+         class="mt-20">
     <h1>{{pageInfo.title}}</h1>
     <div class="text-center" v-html="$md.render(pageInfo.body)"/>
-    <button class="button login-button" @click="fetchLogin">{{pageInfo.buttonTitle}}</button>
-    <button class="m3connect-button button" @click="fetchM3connect">Connect to m3portal</button>
-    <div>{{m3connectRequest}}</div>
+    <button class="button login-button" @click="fetchM3connect">{{pageInfo.buttonTitle}}</button>
+    <div class="mt-20">{{m3connectRequest}}</div>
   </div>
 </template>
 
