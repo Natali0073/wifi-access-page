@@ -1,8 +1,8 @@
 <template>
   <div class="container">
-    <img v-if="pageInfo.image" :src="require(`../static${pageInfo.image}`)" alt="Logo" width="60%">
+    <img v-if="pageInfo.image" :src="require(`../static${pageInfo.image}`)" alt="Logo" width="60%" class="mt-20">
     <h1>{{pageInfo.title}}</h1>
-    <div v-html="$md.render(pageInfo.body)"/>
+    <div class="text-center" v-html="$md.render(pageInfo.body)"/>
     <button class="button login-button" @click="fetchLogin">{{pageInfo.buttonTitle}}</button>
     <button class="m3connect-button button" @click="fetchM3connect">Connect to m3portal</button>
     <div>{{m3connectRequest}}</div>
@@ -52,6 +52,14 @@
   body {
     background-color: rgba(253, 187, 8, .1);
     font-family: Arial;
+  }
+
+  .mt-20 {
+    margin-top: 20px;
+  }
+
+  .text-center {
+    text-align: center;
   }
 
   .container {
