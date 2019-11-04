@@ -8,7 +8,6 @@
     <h1>{{pageInfo.title}}</h1>
     <div class="text-center" v-html="$md.render(pageInfo.body)"/>
     <button class="button login-button" @click="fetchM3connect">{{pageInfo.buttonTitle}}</button>
-    <div class="mt-20">{{m3connectRequest}}</div>
   </div>
 </template>
 
@@ -20,11 +19,6 @@
         script: [{src: 'https://identity.netlify.com/v1/netlify-identity-widget.js'}],
       };
     },
-    data() {
-      return {
-        m3connectRequest: null,
-      }
-    },
     async asyncData({params, payload}) {
       if (payload) return {pageInfo: payload};
       else
@@ -33,17 +27,15 @@
         };
     },
     methods: {
-      async fetchLogin() {
-      },
       async fetchM3connect() {
         this.$axios.setHeader('Authorization', '9ffab846-f931-471b-b43c-e0e03459f0b1');
         await this.$axios.$post('https://portal.m3connect.de/api/v1/create-session')
           .then((response) => {
-            this.m3connectRequest = 'M3connect success: ' + response;
+            alert('Call to WBS API is successful');
             console.log('response', response);
           })
           .catch((error) => {
-            this.m3connectRequest = 'M3connect error: ' + error;
+            alert('Call to WBS API failed because Wi-Fi hotspot is being operated by Sombra and not M3Connect');
             console.log('error', error);
           })
       }
